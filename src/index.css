@@ -5,133 +5,294 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+}
+
 @layer base {
   * {
     box-sizing: border-box;
   }
 
+  html {
+    min-height: 100%;
+    background:
+      linear-gradient(180deg, rgba(5, 10, 20, 0.98), rgba(2, 6, 14, 1)),
+      #02060e;
+  }
+
   body {
-    @apply bg-[#0a0f1e] text-slate-100 font-sans;
+    @apply text-slate-100 font-sans;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    letter-spacing: 0.02em;
+    background:
+      radial-gradient(circle at top, rgba(0, 214, 201, 0.08), transparent 28%),
+      radial-gradient(circle at right, rgba(249, 115, 22, 0.08), transparent 24%),
+      linear-gradient(180deg, rgba(7, 12, 22, 0.98), rgba(2, 6, 14, 1)),
+      repeating-linear-gradient(
+        0deg,
+        rgba(148, 163, 184, 0.035) 0,
+        rgba(148, 163, 184, 0.035) 1px,
+        transparent 1px,
+        transparent 28px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(148, 163, 184, 0.03) 0,
+        rgba(148, 163, 184, 0.03) 1px,
+        transparent 1px,
+        transparent 28px
+      );
+    background-color: #02060e;
+    font-family: Bahnschrift, "Arial Narrow", "Segoe UI", Tahoma, system-ui, sans-serif;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #root {
     min-height: 100vh;
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-[#0d1530];
+    background: rgba(5, 10, 20, 0.9);
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-slate-600 rounded-full;
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.55), rgba(51, 65, 85, 0.9));
+    border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-500;
+    background: linear-gradient(180deg, rgba(34, 211, 238, 0.8), rgba(71, 85, 105, 0.95));
   }
 }
 
 @layer components {
   .card {
-    @apply bg-[#0d1530] border border-slate-700/50 rounded-xl p-4;
+    @apply p-4;
+    background:
+      linear-gradient(180deg, rgba(11, 18, 32, 0.98), rgba(7, 12, 22, 0.98));
+    border: 1px solid rgba(71, 85, 105, 0.55);
+    border-radius: 4px;
+    box-shadow:
+      inset 0 1px 0 rgba(148, 163, 184, 0.06),
+      inset 0 0 0 1px rgba(15, 23, 42, 0.65),
+      0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: linear-gradient(90deg, #22d3ee, #f97316, transparent 72%);
+    opacity: 0.7;
+    pointer-events: none;
   }
 
   .card-header {
-    @apply text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3;
+    @apply text-xs font-semibold text-slate-400 uppercase mb-3;
+    letter-spacing: 0.2em;
   }
 
   .stat-value {
     @apply text-2xl font-bold text-white;
+    letter-spacing: 0.06em;
   }
 
   .badge {
-    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold;
+    @apply inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold;
+    border-radius: 2px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .badge-green {
-    @apply badge bg-green-500/20 text-green-400 border border-green-500/30;
+    @apply badge text-green-300 border;
+    background: rgba(22, 101, 52, 0.28);
+    border-color: rgba(74, 222, 128, 0.4);
   }
 
   .badge-yellow {
-    @apply badge bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+    @apply badge text-amber-300 border;
+    background: rgba(133, 77, 14, 0.28);
+    border-color: rgba(251, 191, 36, 0.4);
   }
 
   .badge-red {
-    @apply badge bg-red-500/20 text-red-400 border border-red-500/30;
+    @apply badge text-red-300 border;
+    background: rgba(127, 29, 29, 0.28);
+    border-color: rgba(248, 113, 113, 0.42);
   }
 
   .badge-blue {
-    @apply badge bg-blue-500/20 text-blue-400 border border-blue-500/30;
+    @apply badge text-cyan-300 border;
+    background: rgba(8, 47, 73, 0.34);
+    border-color: rgba(34, 211, 238, 0.42);
   }
 
   .badge-orange {
-    @apply badge bg-orange-500/20 text-orange-400 border border-orange-500/30;
+    @apply badge text-orange-300 border;
+    background: rgba(124, 45, 18, 0.3);
+    border-color: rgba(251, 146, 60, 0.42);
   }
 
   .badge-gray {
-    @apply badge bg-slate-500/20 text-slate-400 border border-slate-500/30;
+    @apply badge text-slate-300 border;
+    background: rgba(30, 41, 59, 0.7);
+    border-color: rgba(100, 116, 139, 0.45);
   }
 
   .btn-primary {
-    @apply px-4 py-2 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-lg text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer;
+    @apply px-4 py-2 text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer text-white font-semibold;
+    border-radius: 3px;
+    border: 1px solid rgba(251, 146, 60, 0.55);
+    background:
+      linear-gradient(180deg, rgba(249, 115, 22, 0.92), rgba(194, 65, 12, 0.9));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 0 1px rgba(124, 45, 18, 0.25);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-lg text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer;
+    @apply px-4 py-2 text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer text-slate-200 font-semibold;
+    border-radius: 3px;
+    border: 1px solid rgba(71, 85, 105, 0.6);
+    background:
+      linear-gradient(180deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.98));
+    box-shadow:
+      inset 0 1px 0 rgba(148, 163, 184, 0.05),
+      0 0 0 1px rgba(2, 6, 23, 0.65);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .btn-danger {
-    @apply px-4 py-2 bg-red-600/80 hover:bg-red-500 text-white font-semibold rounded-lg text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer;
+    @apply px-4 py-2 text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer text-white font-semibold;
+    border-radius: 3px;
+    border: 1px solid rgba(248, 113, 113, 0.52);
+    background:
+      linear-gradient(180deg, rgba(220, 38, 38, 0.95), rgba(127, 29, 29, 0.95));
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .btn-success {
-    @apply px-4 py-2 bg-green-600/80 hover:bg-green-500 text-white font-semibold rounded-lg text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer;
+    @apply px-4 py-2 text-sm transition-all duration-200 flex items-center gap-2 cursor-pointer text-white font-semibold;
+    border-radius: 3px;
+    border: 1px solid rgba(74, 222, 128, 0.46);
+    background:
+      linear-gradient(180deg, rgba(22, 163, 74, 0.96), rgba(20, 83, 45, 0.96));
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-danger:hover,
+  .btn-success:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
   }
 
   .progress-bar {
-    @apply h-2 rounded-full bg-slate-700 overflow-hidden;
+    @apply h-2 overflow-hidden;
+    background:
+      linear-gradient(180deg, rgba(15, 23, 42, 1), rgba(2, 6, 23, 1));
+    border: 1px solid rgba(51, 65, 85, 0.7);
+    border-radius: 2px;
   }
 
   .progress-fill {
-    @apply h-full rounded-full transition-all duration-500;
+    @apply h-full transition-all duration-500;
+    border-radius: 1px;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
   }
 
   .table-row {
-    @apply border-b border-slate-700/40 hover:bg-slate-700/20 transition-colors;
+    @apply transition-colors;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.45);
   }
 
   .table-cell {
-    @apply px-3 py-2.5 text-sm;
+    @apply px-3 py-2 text-sm;
   }
 
   .input-field {
-    @apply w-full bg-[#111d3c] border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-100
-           focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500/30
-           placeholder-slate-500 transition-colors;
+    @apply w-full px-3 py-2 text-sm text-slate-100 placeholder-slate-500 transition-colors;
+    background:
+      linear-gradient(180deg, rgba(4, 10, 18, 0.98), rgba(12, 20, 34, 0.98));
+    border: 1px solid rgba(71, 85, 105, 0.7);
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(2, 6, 23, 0.75);
+    font-family: Consolas, "JetBrains Mono", "Fira Code", monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: rgba(34, 211, 238, 0.75);
+    box-shadow:
+      inset 0 0 0 1px rgba(6, 182, 212, 0.2),
+      0 0 0 2px rgba(34, 211, 238, 0.12);
   }
 
   .sidebar-item {
-    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer;
+    @apply flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all duration-200 cursor-pointer;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   .sidebar-item-active {
-    @apply sidebar-item bg-orange-500/20 text-orange-400 border border-orange-500/20;
+    @apply sidebar-item text-cyan-300 border;
+    background:
+      linear-gradient(90deg, rgba(8, 47, 73, 0.9), rgba(12, 20, 34, 0.95));
+    border-color: rgba(34, 211, 238, 0.35);
+    box-shadow: inset 3px 0 0 #22d3ee;
   }
 
   .sidebar-item-inactive {
-    @apply sidebar-item text-slate-400 hover:text-slate-200 hover:bg-slate-700/40;
+    @apply sidebar-item text-slate-400;
+    border: 1px solid transparent;
+  }
+
+  .sidebar-item-inactive:hover {
+    @apply text-slate-100;
+    background: rgba(15, 23, 42, 0.72);
+    border-color: rgba(51, 65, 85, 0.45);
   }
 
   .section-title {
     @apply text-lg font-bold text-white mb-1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .section-subtitle {
     @apply text-xs text-slate-400;
+    letter-spacing: 0.06em;
   }
 
   .pulse-dot {
@@ -141,11 +302,11 @@
 
 @layer utilities {
   .glow-orange {
-    box-shadow: 0 0 20px rgba(249, 115, 22, 0.15);
+    box-shadow: 0 0 18px rgba(249, 115, 22, 0.2);
   }
 
   .glow-green {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+    box-shadow: 0 0 18px rgba(34, 197, 94, 0.18);
   }
 
   .text-gradient {
@@ -162,15 +323,17 @@
 
 /* Override Leaflet tooltip untuk label node — transparan */
 .leaflet-node-label {
-  background: rgba(10,15,30,0.85) !important;
-  border: 1px solid rgba(148,163,184,0.15) !important;
-  border-radius: 4px !important;
-  box-shadow: none !important;
+  background: rgba(3, 8, 16, 0.92) !important;
+  border: 1px solid rgba(34, 211, 238, 0.2) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 0 1px rgba(2, 6, 23, 0.7) !important;
   padding: 2px 6px !important;
-  color: #e2e8f0 !important;
-  font-family: Inter, system-ui, sans-serif !important;
+  color: #dbeafe !important;
+  font-family: Bahnschrift, "Arial Narrow", "Segoe UI", Tahoma, sans-serif !important;
   font-size: 10px !important;
   font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   white-space: nowrap;
   pointer-events: none;
 }
@@ -180,29 +343,30 @@
 
 /* Leaflet popup dark theme */
 .leaflet-popup-content-wrapper {
-  background: #0d1530 !important;
-  border: 1px solid rgba(148,163,184,0.2) !important;
-  border-radius: 12px !important;
+  background: linear-gradient(180deg, rgba(10, 17, 30, 0.98), rgba(4, 10, 18, 0.98)) !important;
+  border: 1px solid rgba(71,85,105,0.38) !important;
+  border-radius: 4px !important;
   color: #e2e8f0 !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5) !important;
 }
 .leaflet-popup-tip {
-  background: #0d1530 !important;
+  background: #0a111e !important;
 }
 .leaflet-popup-close-button {
   color: #94a3b8 !important;
 }
 .leaflet-control-zoom a {
-  background: #0d1530 !important;
-  color: #e2e8f0 !important;
-  border-color: rgba(148,163,184,0.2) !important;
+  background: #09111d !important;
+  color: #dbeafe !important;
+  border-color: rgba(34,211,238,0.18) !important;
+  border-radius: 2px !important;
 }
 .leaflet-control-zoom a:hover {
-  background: #111d3c !important;
+  background: #102032 !important;
 }
 .leaflet-control-attribution {
-  background: rgba(10,15,30,0.8) !important;
-  color: #475569 !important;
+  background: rgba(2,6,14,0.82) !important;
+  color: #64748b !important;
   font-size: 9px !important;
 }
 .leaflet-control-attribution a {

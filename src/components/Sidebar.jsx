@@ -12,11 +12,11 @@ const NAV_ITEMS = [
 
 export default function Sidebar({ activePage, onNavigate }) {
   return (
-    <aside className="w-64 min-h-screen bg-[#0d1530] border-r border-slate-700/40 flex flex-col shrink-0">
+    <aside className="w-72 min-h-screen bg-[linear-gradient(180deg,#050b14_0%,#09111d_100%)] border-r border-slate-700/60 flex flex-col shrink-0 shadow-[12px_0_30px_rgba(0,0,0,0.25)]">
       {/* Logo */}
-      <div className="px-5 py-5 border-b border-slate-700/40">
+      <div className="px-5 py-5 border-b border-slate-700/50">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-orange-500 rounded-lg flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 bg-[linear-gradient(180deg,#f97316_0%,#9a3412_100%)] border border-orange-400/40 flex items-center justify-center shrink-0 shadow-[0_0_18px_rgba(249,115,22,0.18)]">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
               <rect x="9" y="11" width="14" height="10" rx="2" />
@@ -25,24 +25,24 @@ export default function Sidebar({ activePage, onNavigate }) {
             </svg>
           </div>
           <div>
-            <div className="text-sm font-bold text-white leading-tight">Rail Logistics</div>
-            <div className="text-[10px] text-orange-400 font-semibold uppercase tracking-widest">Simulator v1.0</div>
+            <div className="text-sm font-bold text-white leading-tight tracking-[0.18em] uppercase">Rail Logistics</div>
+            <div className="text-[10px] text-orange-300 font-semibold uppercase tracking-[0.28em]">Simulator Console</div>
           </div>
         </div>
       </div>
 
       {/* Live indicator */}
-      <div className="px-5 py-3 border-b border-slate-700/40">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-xs text-slate-400">Simulasi Aktif</span>
-          <span className="ml-auto text-xs font-mono text-green-400">LIVE</span>
+      <div className="px-5 py-3 border-b border-slate-700/50">
+        <div className="flex items-center gap-2 border border-green-500/25 bg-green-950/20 px-3 py-2">
+          <span className="w-2 h-2 bg-green-400 animate-pulse" />
+          <span className="text-[10px] text-slate-300 uppercase tracking-[0.18em]">Simulation Link</span>
+          <span className="ml-auto text-[10px] font-mono text-green-300 tracking-[0.2em]">Live</span>
         </div>
       </div>
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1">
-        <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest px-2 mb-3">Menu Utama</div>
+        <div className="text-[10px] font-semibold text-slate-500 uppercase tracking-[0.24em] px-2 mb-3">Control Modules</div>
         {NAV_ITEMS.map(item => {
           const Icon = item.icon
           const active = activePage === item.id
@@ -52,20 +52,20 @@ export default function Sidebar({ activePage, onNavigate }) {
               onClick={() => onNavigate(item.id)}
               className={active ? 'sidebar-item-active w-full text-left' : 'sidebar-item-inactive w-full text-left'}
             >
-              <Icon size={16} className={active ? 'text-orange-400' : 'text-slate-500'} />
+              <Icon size={16} className={active ? 'text-cyan-300' : 'text-slate-500'} />
               <span>{item.label}</span>
-              {active && <span className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-400" />}
+              {active && <span className="ml-auto w-1.5 h-1.5 bg-cyan-300" />}
             </button>
           )
         })}
       </nav>
 
       {/* Bottom info */}
-      <div className="px-5 py-4 border-t border-slate-700/40">
-        <div className="text-[10px] text-slate-500 leading-relaxed">
-          <div className="font-semibold text-slate-400 mb-1">KAI Capacity Simulator</div>
+      <div className="px-5 py-4 border-t border-slate-700/50">
+        <div className="text-[10px] text-slate-500 leading-relaxed tracking-[0.08em]">
+          <div className="font-semibold text-slate-300 mb-1 uppercase tracking-[0.18em]">KAI Capacity Simulator</div>
           <div>© 2026 Rail Operations</div>
-          <div className="mt-1 text-slate-600">For internal planning use</div>
+          <div className="mt-1 text-slate-600 uppercase tracking-[0.14em]">Internal Planning Terminal</div>
         </div>
       </div>
     </aside>

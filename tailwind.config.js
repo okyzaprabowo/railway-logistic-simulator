@@ -20,8 +20,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['Bahnschrift', '"Arial Narrow"', '"Segoe UI"', 'Tahoma', 'system-ui', 'sans-serif'],
+        mono: ['Consolas', '"JetBrains Mono"', '"Fira Code"', 'monospace'],
       }
     },
   },

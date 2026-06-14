@@ -224,26 +224,32 @@ export default function App() {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-transparent">
       <Sidebar activePage={page} onNavigate={setPage} />
 
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 overflow-auto relative">
         {/* Top bar */}
-        <div className="sticky top-0 z-20 bg-[#0a0f1e]/95 backdrop-blur border-b border-slate-700/40 px-6 py-3 flex items-center justify-between">
-          <div className="text-xs text-slate-400 font-mono">
-            {nowStr()} WIB
+        <div className="sticky top-0 z-20 border-b border-cyan-900/30 bg-[#040a12]/95 backdrop-blur px-6 py-3 flex items-center justify-between shadow-[0_8px_24px_rgba(0,0,0,0.25)]">
+          <div className="flex items-center gap-4">
+            <div className="text-[11px] text-cyan-300 font-mono tracking-[0.2em]">
+              SYS TIME {nowStr()} WIB
+            </div>
+            <div className="hidden md:flex items-center gap-2 border border-slate-700/60 bg-slate-950/70 px-3 py-1 text-[10px] font-mono tracking-[0.18em] text-slate-400">
+              <span className="w-1.5 h-1.5 bg-orange-400" />
+              OPS RAIL LOGISTICS
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <SimSpeedBadge speed={params.simulationSpeed} />
             {isRunning ? (
-              <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-3 py-1">
+              <div className="flex items-center gap-2 border border-green-500/30 bg-green-950/30 px-3 py-1">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-xs text-green-400 font-semibold">RUNNING</span>
+                <span className="text-[10px] text-green-300 font-semibold tracking-[0.18em]">SIM RUNNING</span>
               </div>
             ) : (
-              <div className="flex items-center gap-2 bg-slate-700/30 border border-slate-600/30 rounded-full px-3 py-1">
+              <div className="flex items-center gap-2 border border-slate-700/60 bg-slate-950/60 px-3 py-1">
                 <span className="w-2 h-2 rounded-full bg-slate-400" />
-                <span className="text-xs text-slate-400 font-semibold">PAUSED</span>
+                <span className="text-[10px] text-slate-300 font-semibold tracking-[0.18em]">SIM PAUSED</span>
               </div>
             )}
             <button onClick={isRunning ? handlePause : handleStart} className={isRunning ? 'btn-secondary py-1 text-xs' : 'btn-success py-1 text-xs'}>
@@ -272,11 +278,11 @@ function getNodeName(nodeId) {
 
 function SimSpeedBadge({ speed }) {
   return (
-    <div className="flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full px-3 py-1">
+    <div className="flex items-center gap-1.5 border border-cyan-500/25 bg-cyan-950/20 px-3 py-1">
       <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="text-blue-400">
         <polygon points="5 3 19 12 5 21 5 3"/>
       </svg>
-      <span className="text-xs text-blue-400 font-mono font-semibold">{speed}x</span>
+      <span className="text-[10px] text-cyan-300 font-mono font-semibold tracking-[0.18em]">TIME {speed}X</span>
     </div>
   )
 }
@@ -285,12 +291,12 @@ function PageHeader({ title, subtitle, isRunning }) {
   return (
     <div className="flex items-center justify-between">
       <div>
-        <h1 className="text-xl font-bold text-white">{title}</h1>
-        <p className="text-sm text-slate-400 mt-0.5">{subtitle}</p>
+        <h1 className="text-xl font-bold text-white tracking-[0.16em]">{title}</h1>
+        <p className="text-sm text-slate-400 mt-1 tracking-[0.06em]">{subtitle}</p>
       </div>
-      <div className="flex items-center gap-2 text-xs text-slate-500">
-        <span className={`w-1.5 h-1.5 rounded-full ${isRunning ? 'bg-green-400 animate-pulse' : 'bg-slate-500'}`} />
-        {isRunning ? 'Simulasi Berjalan' : 'Simulasi Berhenti'}
+      <div className="flex items-center gap-2 border border-slate-700/60 bg-slate-950/50 px-3 py-1 text-[10px] text-slate-400 tracking-[0.16em]">
+        <span className={`w-1.5 h-1.5 ${isRunning ? 'bg-green-400 animate-pulse' : 'bg-slate-500'}`} />
+        {isRunning ? 'STATUS ONLINE' : 'STATUS STANDBY'}
       </div>
     </div>
   )
