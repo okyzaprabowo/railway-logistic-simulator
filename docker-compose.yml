@@ -1,0 +1,9 @@
+services:
+  rail-logistics-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rail-logistics-simulator
+    ports:
+      - "8080:80"
+    restart: unless-stopped

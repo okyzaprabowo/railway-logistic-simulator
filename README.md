@@ -162,11 +162,63 @@ npm run preview
 - `npm run build` creates the production bundle
 - `npm run preview` serves the production build locally
 
+## Docker Deployment
+
+This repo now includes a production Docker setup for running on a VPS.
+
+Included files:
+
+- `Dockerfile`
+- `docker-compose.yml`
+- `nginx.conf`
+- `.dockerignore`
+
+### Option 1: Run With Docker Compose
+
+```bash
+docker compose up -d --build
+```
+
+The app will be available on:
+
+- `http://YOUR_VPS_IP:8080`
+
+Stop it with:
+
+```bash
+docker compose down
+```
+
+### Option 2: Run With Plain Docker
+
+Build the image:
+
+```bash
+docker build -t rail-logistics-simulator .
+```
+
+Run the container:
+
+```bash
+docker run -d --name rail-logistics-simulator -p 8080:80 --restart unless-stopped rail-logistics-simulator
+```
+
+### VPS Notes
+
+- Port `8080` on the VPS is mapped to port `80` inside the container
+- Change `8080:80` in `docker-compose.yml` if you want a different external port
+- The `nginx` config includes SPA fallback to `index.html`, so client-side routing keeps working
+- Health endpoint is available at `/health`
+
 ## Project Structure
 
 ```text
 .
+|-- .dockerignore
+|-- Dockerfile
+|-- docker-compose.yml
 |-- index.html
+|-- nginx.conf
 |-- package.json
 |-- src
 |   |-- App.jsx
